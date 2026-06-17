@@ -1,0 +1,33 @@
+name: C Workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compilar programa principal
+        run: |
+          gcc arquivo-ox.c function_utils.c -o arquivo-ox
+
+      - name: Compilar testes
+        run: |
+          gcc test_arquivo-ox.c function_utils.c -o testes
+
+      - name: Executar testes
+        run: |
+          ./testes
+
+      - name: Executar programa
+        run: |
+          ./arquivo-ox tabuleiro.txt O O O X X X O O O
+
+      - name: Mostrar arquivo gerado
+        run: |
+          cat tabuleiro.txt
