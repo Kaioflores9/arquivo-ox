@@ -1,0 +1,24 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compilar teste
+        run: gcc test_arquivo-ox.c -o testes
+
+      - name: Executar teste
+        run: ./testes
+
+      - name: Compilar programa
+        run: gcc arquivo-ox.c -o arquivo-ox
